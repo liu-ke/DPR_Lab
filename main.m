@@ -9,7 +9,7 @@ med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medDat
 load('features.mat')
 normalize_method=1;
 [normalized_a,normalized_b]=normalization(features_a,features_b,normalize_method);
-detection_method=1;
+detection_method=2;
 [outliers_a, outliers_b, percent_a,percent_b]=outlier_detection(normalized_a,normalized_b,detection_method);
 
 
