@@ -6,7 +6,7 @@ function [test_result,err_rate]=kNN(training_set,test_set,k)
 %k is the number of  nearest neighborhood
 test_result=[test_set,0];
 for i=1:size(test_set,1)
-    MD=pdist2(training_set,test_set(i,1:5),'mahalanobis');  %for each test feature, calculate the euclidean distance between all training data and itself 
+    MD=pdist2(training_set,test_set(i,1:5),'euclidean');  %for each test feature, calculate the euclidean distance between all training data and itself 
     [MD_sorted,index]=sort(MD);
     if length(training(index(1:k),6)==1)>length(training(index(1:k),6)==0)  %if nearest neighbors are dominated by cancer cells
         test_result(i)=[test_set(i),1];

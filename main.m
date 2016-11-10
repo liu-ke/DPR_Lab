@@ -13,6 +13,15 @@ detection_method=2;
 [normal_features,cancer_features,outliers_a,outliers_b,percent_a,percent_b]=outlier_detection(normalized_normal_features,normalized_cancer_features,detection_method);
 
 
+%training stage
+for i=1:11
+    subset=training_set(i,:,:);
+end
+%test stage
+for i=12:14
+    subset=test_set(i,:,:);
+end
+
 
 
 
