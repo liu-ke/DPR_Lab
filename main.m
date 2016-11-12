@@ -16,11 +16,14 @@ detection_method=2;
 
 training_set(:,1)=[];           %remove PatientID
 test_set(:,1)=[];
-k=30;
+k=10;
 [cleaned_set]=kmeans_clean(training_set,k);%clean training data using kmeans clustering
-%training stage
+%training stage using kNN
+kNN_k=10;
+[test_result,err_rate]=kNN(cleaned_set,test_set,kNN_k);
+%training & test stage using NearestMean
+[test_result,err_rate]=Nearestmean(cleaned_set,test_set);
 
-%test stage
 
 
 
