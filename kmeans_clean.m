@@ -4,8 +4,8 @@ function [cleaned_set]=kmeans_clean(training_set,k)
 %random initialization->choose k training features as cluster centers randomly
 centers=training_set(randperm(size(training_set,1),k),1:5);
 
-%loop 10 times to cluster
-for i=1:10
+%loop 20 times to cluster
+for i=1:20
     distances=pdist2(training_set(:,1:5),centers);      %for each feature, calculate the distances between itself and every cluster center
     [~,index]=min(distances');                %assign each feature to a cluster whose center is the closest,1<=index<=k
     for j=1:k                                   %readjust the cluster centers

@@ -16,8 +16,10 @@ detection_method=2;
 
 training_set(:,1)=[];           %remove PatientID
 test_set(:,1)=[];
-k=10;
+k=100;                                   %how to determine k clusters???
 [cleaned_set]=kmeans_clean(training_set,k);%clean training data using kmeans clustering
+%training using libSVM
+[test_result,err_rate]=lib_svm(cleaned_set,test_set);
 %training stage using kNN
 kNN_k=10;
 [test_result,err_rate]=kNN(cleaned_set,test_set,kNN_k);
