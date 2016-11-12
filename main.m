@@ -9,18 +9,19 @@ med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medDat
 load('features.mat')
 normalize_method=3;
 [normalized_normal_features,normalized_cancer_features]=normalization(features_a,features_b,normalize_method);
+
 detection_method=2;
 [normal_features,cancer_features,outliers_a,outliers_b,percent_a,percent_b]=outlier_detection(normalized_normal_features,normalized_cancer_features,detection_method);
+[training_set,test_set]=datapartition(normal_features,cancer_features);
 
-
+training_set(:,1)=[];           %remove PatientID
+test_set(:,1)=[];
+k=30;
+[cleaned_set]=kmeans_clean(training_set,k);%clean training data using kmeans clustering
 %training stage
-for i=1:11
-    subset=training_set(i,:,:);
-end
+
 %test stage
-for i=12:14
-    subset=test_set(i,:,:);
-end
+
 
 
 
