@@ -1,13 +1,12 @@
 clear;
 clc;
-med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medData\dataset.mat');
-%save('med_dataset.mat','med_dataset');
-%(patientID;cell_location_i;cell_location_j;cell_location_k;ADC_value;Ktrans_value;Kep_value;PET_value;T2_value)
-%feature_length=9;
-%[features_a,features_b]=extraction(med_dataset,feature_length);
-%save('features.mat','features_a','features_b');
+%med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medData\dataset.mat');
+%(patientID;ADC_value;Ktrans_value;Kep_value;PET_value;T2_value)
+% feature_length=6;
+% [features_a,features_b]=extraction(med_dataset,feature_length);
+% save('features.mat','features_a','features_b');
 load('features.mat')
-normalize_method=3;
+normalize_method=2;
 [normalized_normal_features,normalized_cancer_features]=normalization(features_a,features_b,normalize_method);
 
 detection_method=2;
@@ -16,15 +15,15 @@ detection_method=2;
 
 training_set(:,1)=[];           %remove PatientID
 test_set(:,1)=[];
-k=100;                                   %how to determine k clusters???
+k=2;                                   %how to determine k clusters???
 [cleaned_set]=kmeans_clean(training_set,k);%clean training data using kmeans clustering
 %training using libSVM
-[test_result,err_rate]=lib_svm(cleaned_set,test_set);
+%[test_result,err_rate]=lib_svm(cleaned_set,test_set);
 %training stage using kNN
 kNN_k=10;
 [test_result,err_rate]=kNN(cleaned_set,test_set,kNN_k);
 %training & test stage using NearestMean
-[test_result,err_rate]=Nearestmean(cleaned_set,test_set);
+%[test_result,err_rate]=Nearestmean(cleaned_set,test_set);
 
 
 
