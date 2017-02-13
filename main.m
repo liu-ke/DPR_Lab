@@ -4,9 +4,9 @@ med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medDat
 %1 Feature Extraction(Written by ChengQing)
 % (patientID,ADC_value,Ktrans_value,Kep_value,PET_value,T2_value,loc_x,loc_y,loc_z)
 % save features to speed up 
-feature_dim=9;
-[normal_features,cancer_features]=Extraction(med_dataset,feature_dim);
-save('features.mat','normal_features','cancer_features');
+% feature_dim=9;
+% [normal_features,cancer_features]=Extraction(med_dataset,feature_dim);
+% save('features.mat','normal_features','cancer_features');
 load('features.mat');
 % normal_features labeled as -1, cancer_features labeled as 1
 features=[normal_features,-ones(size(normal_features,1),1);cancer_features,ones(size(cancer_features,1),1)];
@@ -17,7 +17,7 @@ normalization_method=2;
 
 %3 Outlier Detection(Written by LiuKe)
 % detection_method==1: Detect outliers by Mahalanobis Distance;detection_method==2: Detect outliers by Robust Distance
-detection_method=2; 
+detection_method=1; 
 [cleaned_training_features,normal_outliers_percent_training,cancer_outliers_percent_training]=OutlierDetection(normalized_training_features,detection_method);
 % no need for outlier detection in test set 
 % [cleaned_test_features,normal_outliers_percent_test,cancer_outliers_percent_test]=OutlierDetection(normalized_test_features,detection_method);
