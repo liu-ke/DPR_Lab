@@ -4,9 +4,9 @@ med_dataset=load('F:\Courses\INFOTECH\2017ws\DPRLAB\patRecDat\forStudents\medDat
 %1 Feature Extraction(Written by ChengQing)
 % (patientID,ADC_value,Ktrans_value,Kep_value,PET_value,T2_value,loc_x,loc_y,loc_z)
 % save features to speed up 
-% feature_dim=9;
-% [normal_features,cancer_features]=Extraction(med_dataset,feature_dim);
-% save('features.mat','normal_features','cancer_features');
+feature_dim=9;
+[normal_features,cancer_features]=Extraction(med_dataset,feature_dim);
+save('features.mat','normal_features','cancer_features');
 load('features.mat');
 % normal_features labeled as -1, cancer_features labeled as 1
 features=[normal_features,-ones(size(normal_features,1),1);cancer_features,ones(size(cancer_features,1),1)];
